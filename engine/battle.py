@@ -38,13 +38,12 @@ class Party:
                 return True
         return False
 
-def battle_round(player_party, ai_party, move_lookup, type_chart):
+def battle_round(player_party, ai_party, move_lookup, type_chart, player_move):
     log = []
     player_mon = player_party.active
     ai_mon = ai_party.active
 
     # Choose moves
-    player_move = random.choice([m for m in player_mon.moves if m != "-"])
     ai_move = random.choice([m for m in ai_mon.moves if m != "-"])
 
     # Damage
@@ -73,3 +72,29 @@ def battle_round(player_party, ai_party, move_lookup, type_chart):
 
 def is_battle_over(player_party, ai_party):
     return not player_party.has_available() or not ai_party.has_available()
+
+
+def prepare_battle(player_party, ai_party):
+    """Returns log intro + info needed to show party selection."""
+    log = []
+    log.append("🎮 A wild battle begins!")
+    log.append("Both teams reveal their lineups!")
+    log.append(f"🧠 Opponent sends out {ai_party.active.name}!")
+
+    # Don't auto-send player mon — let UI decide
+    return log
+def start_battle(player_party, ai_party):
+    """Returns who goes first and a log message list for the intro."""
+    log = []
+    log.append("🎮 A wild battle begins!")
+    log.append(f"🧠 Opponent sends out {ai_party.active.name}!")
+    log.append(f"➡️ You send out {player_party.active.name}!")
+
+    # Random for now — you could later make this a GUI selection
+    #player_first = random.choice([True, False])
+    player_first = False
+    starter = "You" if player_first else "Opponent"
+    log.append(f"{starter} will go first!")
+
+    return player_first, log
+

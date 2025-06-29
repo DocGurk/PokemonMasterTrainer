@@ -9,7 +9,10 @@ def roll_dice(dice_str):
     return sum(random.randint(1, sides) for _ in range(num))
 
 def calculate_move_damage(move, target_types, effectiveness_matrix, effects):
-    power = int(move['Power']) if move['Power'] and str(move['Power']).isdigit() else 0
+    try:
+        power = int(move['Power']) if move['Power'] and str(move['Power']).isdigit() else 0
+    except:
+        power = 0
     dice = move.get('Dice', '0D0')
     damage_roll = roll_dice(dice)
     move_type = move['Type']

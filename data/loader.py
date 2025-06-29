@@ -22,4 +22,4 @@ def load_data():
 def load_type_effectiveness_matrix(path="./db/type_chart.csv"):
     if not os.path.exists(path):
         raise FileNotFoundError(f"Matrix file not found at: {path}")
-    return pd.read_csv(path, sep=';', index_col=0)
+    return pd.read_csv(path, sep=';', index_col=0).to_dict(orient="index")
