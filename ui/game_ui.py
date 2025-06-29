@@ -3,7 +3,7 @@ import random
 from engine.battle import Party, battle_round, is_battle_over, start_battle, prepare_battle
 
 def start_game(pokemon_df, move_lookup, type_chart):
-    WIDTH, HEIGHT = 800, 600
+    WIDTH, HEIGHT = 800, 800
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Pokémon Battle")
 

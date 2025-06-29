@@ -19,7 +19,7 @@ def calculate_move_damage(move, target_types, effectiveness_matrix, effects):
 
     # Sum effectiveness against all target types
     effectiveness_total = sum(
-        effectiveness_matrix.get(move_type, {}).get(t, 0)
+        effectiveness_matrix.get(move_type.strip(), {}).get(t, 0)
         for t in target_types if t
     )
 
